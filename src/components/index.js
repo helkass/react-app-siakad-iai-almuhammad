@@ -7,9 +7,9 @@ import LayananComponent from "./home/Layanan";
 import FooterComponent from "./Footer";
 
 // layouting
-import LayoutComponent from "./layout";
+import LayoutComponent from "./layout/PublicLayout";
 import UserLayout from "./Layout/UserLayout";
-import UserSection from "./Layout/UserSection";
+import UserSection from "./layout/UserSection";
 
 // atom
 import {
