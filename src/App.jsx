@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import {
    BiayaKuliahPage,
    DashboardPage,
+   ErrorPage,
    HasilStudi,
    HomePage,
    LoginPage,
@@ -63,6 +64,7 @@ function App() {
                   <Route path="biaya" element={<BiayaKuliahPage />} />
                   <Route path="tagihan" element={<TagihanPage />} />
                </Route>
+               <Route path="*" element={<ErrorPage />} />
             </Route>
          </Routes>
       </div>

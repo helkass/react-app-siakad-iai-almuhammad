@@ -139,7 +139,7 @@ export default function BiayaKuliahPage() {
                            "belum lunas" && (
                            <CardFooter justify="flex-end">
                               <Link
-                                 to="tagihan"
+                                 to={`/mhs/${user.nim}/tagihan`}
                                  style={{
                                     justifySelf: "flex-end",
                                     alignSelf: "flex-end",

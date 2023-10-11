@@ -2,6 +2,7 @@ import HomePage from "./home";
 import RegistrasiPage from "./auth/Register";
 import LoginPage from "./auth/Login";
 import ValidationRegister from "./Validation";
+import ErrorPage from "./error/ErrorPage";
 
 // user || mahasiswa pages
 import DashboardPage from "./user/Dashboard";
@@ -26,4 +27,5 @@ export {
    HasilStudi,
    TagihanPage,
    BiayaKuliahPage,
+   ErrorPage,
 };
