@@ -21,12 +21,7 @@ import {
    HStack,
    Heading,
 } from "@chakra-ui/react";
-import {
-   Link as RouterDom,
-   Outlet,
-   useLocation,
-   useNavigate,
-} from "react-router-dom";
+import { Outlet, Link as RouterDom } from "react-router-dom";
 import { HiHome } from "react-icons/hi2";
 import { FaBars, FaListAlt } from "react-icons/fa";
 import { BiBook } from "react-icons/bi";
@@ -35,52 +30,30 @@ import { BsCardChecklist } from "react-icons/bs";
 import user_image from "../../assets/user.jpg";
 import { useAuth } from "../../contexts/useAuth";
 import { Helmet } from "react-helmet-async";
-import ProtectRoute from "../../middleware/ProtectRoute";
 import { useCallback, useEffect } from "react";
 import { useFetch } from "../../helpers";
-import { useLocalStorage } from "../../contexts/useLocalStorage";
 
 const UserLayout = () => {
    const { isOpen, onClose, onOpen } = useDisclosure();
    const { logout } = useAuth();
-   const location = useLocation();
-   const fromLocation = location.state;
-   const mahasiswa = useFetch();
-   const user = useLocalStorage("mahasiswa", null);
-   const navigate = useNavigate();
-
-   const getUser = useCallback(async () => {
-      if (!fromLocation && user[0] === null) {
-         navigate("/login", { replace: true, state: location });
-         return;
-      }
-      user !== null && (await mahasiswa.get(`/mahasiswa/${user[0].id}`));
-   }, []);
-
-   useEffect(() => {
-      getUser();
-   }, []);
 
    return (
       <Container as="section" maxW="7xl" px={{ base: 0, md: 5 }}>
          <Navbar logout={() => logout()} onOpen={onOpen} />
-         <DrawerNavigation
-            image={
-               mahasiswa.data !== null ? mahasiswa.data.profilePic : user_image
-            }
-            nim={mahasiswa.data !== null ? mahasiswa.data.nim : "loading..."}
-            name={mahasiswa.data !== null ? mahasiswa.data.name : "loading..."}
-            isOpen={isOpen}
-            onClose={onClose}
-         />
-         <ProtectRoute>
-            <Outlet />
-         </ProtectRoute>
+         <DrawerNavigation isOpen={isOpen} onClose={onClose} />
+         <Outlet />
       </Container>
    );
 };
 
-const DrawerNavigation = ({ image, name, nim, isOpen, onClose, btnRef }) => {
+const DrawerNavigation = ({ isOpen, onClose, btnRef, handleClickLink }) => {
+   const mahasiswa = useFetch();
+   const { user } = useAuth();
+
+   const getUser = useCallback(async () => {
+      await mahasiswa.get(`/mahasiswa/${user.id}`);
+   }, []);
+
    const styles = {
       linkDrawer: {
          display: "flex",
@@ -90,6 +63,11 @@ const DrawerNavigation = ({ image, name, nim, isOpen, onClose, btnRef }) => {
          fontWeight: "600",
       },
    };
+
+   useEffect(() => {
+      getUser();
+   }, []);
+
    return (
       <Drawer
          isOpen={isOpen}
@@ -109,20 +87,32 @@ const DrawerNavigation = ({ image, name, nim, isOpen, onClose, btnRef }) => {
                   rounded="lg"
                   py="20px">
                   <Image
-                     src={image}
+                     src={
+                        mahasiswa.data !== null
+                           ? mahasiswa.data?.profilePic
+                           : user_image
+                     }
                      alt={"user-profile"}
                      boxSize={100}
                      rounded="full"
                   />
-                  <Text>{name}</Text>
-                  <Text>{nim}</Text>
+                  <Text>
+                     {mahasiswa.data !== null
+                        ? mahasiswa.data?.name
+                        : "loading..."}
+                  </Text>
+                  <Text>
+                     {mahasiswa.data !== null
+                        ? mahasiswa.data?.nim
+                        : "loading..."}
+                  </Text>
                   <HStack>
-                     <RouterDom to="profile">
-                        <Button colorScheme="teal">Lihat Profile</Button>
-                     </RouterDom>
-                     <RouterDom to="photo">
-                        <Button colorScheme="teal">Foto Profile</Button>
-                     </RouterDom>
+                     <Button as={RouterDom} to="profile" colorScheme="teal">
+                        Lihat Profile
+                     </Button>
+                     <Button as={RouterDom} to="photo" colorScheme="teal">
+                        Foto Profile
+                     </Button>
                   </HStack>
                </VStack>
                {/* end profile mahasiswa */}
@@ -138,7 +128,6 @@ const DrawerNavigation = ({ image, name, nim, isOpen, onClose, btnRef }) => {
                      as={RouterDom}
                      to="dashboard"
                      w="full"
-                     onClick={onClose}
                      rounded="sm"
                      _hover={{ bg: "green.50" }}>
                      <Button
@@ -167,34 +156,32 @@ const DrawerNavigation = ({ image, name, nim, isOpen, onClose, btnRef }) => {
                         <AccordionPanel pb={4}>
                            <VStack gap={3} align="left">
                               <ChakraLink
-                                 _hover={{ bg: "green.50" }}
                                  as={RouterDom}
                                  to="krs"
+                                 _hover={{ bg: "green.50" }}
                                  w="full"
                                  p="2"
-                                 onClick={onClose}
                                  sx={styles.linkDrawer}>
                                  <BsCardChecklist />
                                  Rencana Studi (KRS)
                               </ChakraLink>
                               <ChakraLink
                                  _hover={{ bg: "green.50" }}
-                                 as={RouterDom}
-                                 to="khs"
                                  w="full"
                                  p="2"
-                                 onClick={onClose}
+                                 as={RouterDom}
+                                 to="khs"
                                  sx={styles.linkDrawer}>
                                  <FaListAlt />
                                  Hasil Studi
                               </ChakraLink>
                               <ChakraLink
                                  _hover={{ bg: "green.50" }}
-                                 as={RouterDom}
-                                 to="transkrip"
                                  w="full"
                                  p="2"
-                                 onClick={onClose}
+                                 as={RouterDom}
+                                 to="transkrip"
+                                 onClick={() => handleClickLink("khs")}
                                  sx={styles.linkDrawer}>
                                  <MdOutlineListAlt />
                                  Transkrip Nilai
@@ -218,22 +205,20 @@ const DrawerNavigation = ({ image, name, nim, isOpen, onClose, btnRef }) => {
                            <VStack gap={3} align="left">
                               <ChakraLink
                                  _hover={{ bg: "green.50" }}
-                                 as={RouterDom}
-                                 to="biaya"
                                  w="full"
                                  p="2"
-                                 onClick={onClose}
+                                 as={RouterDom}
+                                 to="biaya"
                                  sx={styles.linkDrawer}>
                                  <BsCardChecklist />
                                  Info Biaya Kuliah
                               </ChakraLink>
                               <ChakraLink
                                  _hover={{ bg: "green.50" }}
-                                 as={RouterDom}
-                                 to="tagihan"
                                  w="full"
                                  p="2"
-                                 onClick={onClose}
+                                 as={RouterDom}
+                                 to="tagihan"
                                  sx={styles.linkDrawer}>
                                  <MdOutlineListAlt />
                                  Info Tagihan

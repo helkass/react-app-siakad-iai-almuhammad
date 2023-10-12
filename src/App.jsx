@@ -15,6 +15,7 @@ import {
    ValidationRegister,
 } from "./pages";
 import { LayoutComponent, UserLayout } from "./components";
+import ProtectRoute from "./middleware/ProtectRoute";
 
 function App() {
    return (
@@ -53,7 +54,13 @@ function App() {
                      </LayoutComponent>
                   }
                />
-               <Route path="mhs/:nim" element={<UserLayout />}>
+               <Route
+                  path="mhs/:nim"
+                  element={
+                     <ProtectRoute>
+                        <UserLayout />
+                     </ProtectRoute>
+                  }>
                   <Route index element={<DashboardPage />} />
                   <Route path="dashboard" element={<DashboardPage />} />
                   <Route path="profile" element={<ProfilePage />} />

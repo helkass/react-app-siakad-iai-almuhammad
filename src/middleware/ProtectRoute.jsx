@@ -1,21 +1,16 @@
-import { Navigate, useLocation } from "react-router-dom";
-import { useAuth } from "../contexts/useAuth";
+import { Navigate } from "react-router-dom";
+import { useAuth, isUnauthenticated } from "../contexts/useAuth";
 
 const ProtectRoute = ({ children }) => {
-   const { user } = useAuth();
-   const location = useLocation();
-   const fromLocation = location.state;
+   const isAuth = useAuth();
+   const isAuthNotNull = isUnauthenticated();
 
-   if (!user) {
+   if (!isAuth.user && isAuthNotNull === null) {
       // user is not authenticated
-      return fromLocation === "login" ? (
-         children
-      ) : (
-         <Navigate to="/login" replace state={{ from: location }} />
-      );
+      return <Navigate to="/login" replace />;
+   } else {
+      return children;
    }
-
-   return children;
 };
 
 export default ProtectRoute;

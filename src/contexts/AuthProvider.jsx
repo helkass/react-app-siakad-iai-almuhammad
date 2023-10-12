@@ -33,10 +33,10 @@ const AuthProvider = ({ children }) => {
 
    // call this function to sign out logged in user
    const logout = useCallback(() => {
-      setUser(null);
       localStorage.removeItem("api_key_siakad");
+      localStorage.removeItem("mahasiswa");
       navigate("/", { replace: true });
-   }, [navigate, setUser]);
+   }, []);
 
    const value = useMemo(
       () => ({
@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
          login,
          logout,
       }),
-      [user, logout, login]
+      [user]
    );
    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
