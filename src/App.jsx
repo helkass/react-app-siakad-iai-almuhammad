@@ -14,7 +14,7 @@ import {
    Transkrip,
    ValidationRegister,
 } from "./pages";
-import { LayoutComponent, UserLayout } from "./components";
+import { PublicLayout, UserLayout } from "./components";
 import ProtectRoute from "./middleware/ProtectRoute";
 
 function App() {
@@ -25,33 +25,33 @@ function App() {
                <Route
                   index
                   element={
-                     <LayoutComponent>
+                     <PublicLayout>
                         <HomePage />
-                     </LayoutComponent>
+                     </PublicLayout>
                   }
                />
                <Route
                   path="login"
                   element={
-                     <LayoutComponent>
+                     <PublicLayout>
                         <LoginPage />
-                     </LayoutComponent>
+                     </PublicLayout>
                   }
                />
                <Route
                   path="registrasi"
                   element={
-                     <LayoutComponent>
+                     <PublicLayout>
                         <ValidationRegister />
-                     </LayoutComponent>
+                     </PublicLayout>
                   }
                />
                <Route
                   path="registrasi/:id"
                   element={
-                     <LayoutComponent>
+                     <PublicLayout>
                         <RegistrasiPage />
-                     </LayoutComponent>
+                     </PublicLayout>
                   }
                />
                <Route

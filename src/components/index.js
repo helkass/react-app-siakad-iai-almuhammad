@@ -7,7 +7,7 @@ import LayananComponent from "./home/Layanan";
 import FooterComponent from "./Footer";
 
 // layouting
-import LayoutComponent from "./layout/PublicLayout";
+import PublicLayout from "./layout/PublicLayout";
 import UserLayout from "./Layout/UserLayout";
 import UserSection from "./layout/UserSection";
 
@@ -34,7 +34,7 @@ export {
    HeaderComponent,
    HeroComponent,
    LayananComponent,
-   LayoutComponent,
+   PublicLayout,
    FooterComponent,
    InputComponent,
    InputSelectStudi,
