@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import { HeroComponent, LayananComponent } from "../../components";
+import HeroComponent from "../../components/home/Hero";
+import LayananComponent from "../../components/home/Layanan";
 
 const HomePage = () => {
    return (

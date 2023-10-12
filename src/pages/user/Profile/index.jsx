@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import NullBoundary from "../../../components/error/NullBoundary";
 import {
-   UserSection,
-   ListValRead,
-   NullBoundary,
    InputComponent,
-} from "../../../components";
+   ListValRead,
+} from "../../../components/common/InputComponent";
+import UserSection from "../../../components/layout/UserSection";
 import {
    Image,
    Box,

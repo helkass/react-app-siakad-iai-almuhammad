@@ -14,8 +14,9 @@ import {
    Transkrip,
    ValidationRegister,
 } from "./pages";
-import { PublicLayout, UserLayout } from "./components";
+import PublicLayout from "./components/layout/PublicLayout";
 import ProtectRoute from "./middleware/ProtectRoute";
+import UserLayout from "./components/Layout/UserLayout";
 
 function App() {
    return (

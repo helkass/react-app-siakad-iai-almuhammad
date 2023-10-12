@@ -8,11 +8,9 @@ import {
    Thead,
    Tr,
 } from "@chakra-ui/react";
-import {
-   UserSection,
-   TableLoaderComponent,
-   ErrorBoundary,
-} from "../../../components";
+import ErrorBoundary from "../../../components/error/ErrorBoundary";
+import UserSection from "../../../components/layout/UserSection";
+import { TableLoaderComponent } from "../../../components/common/LoaderComponent";
 import { AiFillPrinter } from "react-icons/ai";
 import { useFetch } from "../../../helpers";
 import { useAuth } from "../../../contexts/useAuth";

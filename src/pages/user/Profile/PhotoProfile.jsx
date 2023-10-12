@@ -8,7 +8,8 @@ import {
    FormHelperText,
    Button,
 } from "@chakra-ui/react";
-import { AlertComponent, UserSection } from "../../../components";
+import UserSection from "../../../components/layout/UserSection";
+import { AlertComponent } from "../../../components/common/AlertComponent";
 import user_image from "../../../assets/user.jpg";
 import { useState } from "react";
 import { getBase64 } from "../../../utils/base64Converter";

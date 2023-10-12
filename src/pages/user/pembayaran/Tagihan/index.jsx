@@ -1,8 +1,8 @@
+import UserSection from "../../../../components/layout/UserSection";
 import {
-   InputComponent,
    InputSelects,
-   UserSection,
-} from "../../../../components";
+   InputComponent,
+} from "../../../../components/common/InputComponent";
 import {
    Box,
    Breadcrumb,

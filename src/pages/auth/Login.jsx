@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { InputComponent } from "../../components";
 import { Button, Container, Stack, useToast } from "@chakra-ui/react";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/useAuth";
 import { useLocalStorage } from "../../contexts/useLocalStorage";
+import { InputComponent } from "../../components/common";
 
 const LoginPage = () => {
    const [changeValue, setChangeValue] = useState({});

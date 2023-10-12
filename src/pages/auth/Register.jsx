@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { InputComponent, InputSelects } from "../../components";
+import { InputComponent, InputSelects } from "../../components/common";
 import userFp from "../../assets/user.jpg";
 import { getBase64 } from "../../utils/base64Converter";
 import { useEffect } from "react";

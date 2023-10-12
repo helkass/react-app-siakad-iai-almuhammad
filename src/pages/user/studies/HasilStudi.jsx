@@ -11,12 +11,10 @@ import {
    Text,
    Button,
 } from "@chakra-ui/react";
-import {
-   InputSelectStudi,
-   TableLoaderComponent,
-   UserSection,
-   templateHtmlHasilStudi,
-} from "../../../components";
+import templateHtmlHasilStudi from "../../../components/htmlTemplates/templateHasilStudi";
+import { InputSelectStudi } from "../../../components/common/InputComponent";
+import UserSection from "../../../components/layout/UserSection";
+import { TableLoaderComponent } from "../../../components/common/LoaderComponent";
 import { useState } from "react";
 import { useFetch } from "../../../helpers";
 import { useAuth } from "../../../contexts/useAuth";

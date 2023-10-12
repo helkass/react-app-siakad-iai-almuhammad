@@ -1,4 +1,5 @@
-import { TableLoaderComponent, UserSection } from "../../../components";
+import { TableLoaderComponent } from "../../../components/common/LoaderComponent";
+import UserSection from "../../../components/layout/UserSection";
 import Wave from "react-wavify";
 import { TfiPrinter } from "react-icons/tfi";
 import {

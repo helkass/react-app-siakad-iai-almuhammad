@@ -1,10 +1,8 @@
 import { useState } from "react";
-import {
-   CardLoaderComponent,
-   InputSelectStudi,
-   NullBoundary,
-   UserSection,
-} from "../../../components";
+import { CardLoaderComponent } from "../../../components/common/LoaderComponent";
+import NullBoundary from "../../../components/error/NullBoundary";
+import { InputSelectStudi } from "../../../components/common/InputComponent";
+import UserSection from "../../../components/layout/UserSection";
 import {
    Button,
    Heading,

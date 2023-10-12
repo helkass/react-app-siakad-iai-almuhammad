@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { InputComponent, InputSelects } from "../../components";
+import {
+   InputComponent,
+   InputSelects,
+} from "../../components/common/InputComponent";
 import { Button, Container, Stack, useToast } from "@chakra-ui/react";
 import { Helmet } from "react-helmet-async";
 import apiClient from "../../api/apiClient";
